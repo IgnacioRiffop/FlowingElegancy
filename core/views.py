@@ -201,7 +201,7 @@ def producto(request, id):
     producto = Producto.objects.get(id=id)
     try:
         cliente = User.objects.get(username=request.user.username)
-    except Cliente.DoesNotExist:
+    except User.DoesNotExist:
         cliente = None
     data = {
         'producto': producto,

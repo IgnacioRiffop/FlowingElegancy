@@ -22,7 +22,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'index' %}"><i class="fa-solid fa-paw"></i></a>
+      <a class="navbar-brand" href="{% url 'index' %}">Flowing Elegancy</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,17 +32,13 @@
             <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
           </li>
           {% if user.is_authenticated %}
+          
           <li class="nav-item">
             <a class="nav-link" href="{% url 'cuenta' %}">Cuenta</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'carrito' %}">Carrito</a>
           </li>
-          {% if user.username == "admin" %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'administracion' %}">Administracion</a>
-          </li>
-          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesíon</a>
           </li>
