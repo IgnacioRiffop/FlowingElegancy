@@ -1,10 +1,10 @@
 # FORMULARIO PARA AGREGAR Y ACTUALIZAR 
 from django import forms
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm  
 from .models import *
 
 class ProductoForm (ModelForm):
-        
     nombre = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Ingrese Nombre"}))
     precio = forms.IntegerField(min_value=0,widget=forms.NumberInput(attrs={"placeholder":"Ingrese Precio"}))
     stock = forms.IntegerField(min_value=0,widget=forms.NumberInput(attrs={"placeholder":"Ingrese Stock"}))
@@ -18,6 +18,12 @@ class ProductoForm (ModelForm):
         widgets = {
                 'fecha' : forms.SelectDateWidget(years=range(1940,2023))
         }
+
+
+class RegistroForm (UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','email','password1','password2']
 
 
 class CantidadForm (ModelForm):

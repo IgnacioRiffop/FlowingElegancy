@@ -11,11 +11,15 @@
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100"
     style="background-color: rgb(207, 207, 207)">
     <div class="bg-white p-5 rounded-5 text-dark shadow" style="width: 25rem">
-
+        <div class="d-flex justify-content-center">
+            <img src="{% static 'core/img/dog_light_icon.png' %}" alt="login-icon" style="height: 7rem" />
+        </div>
         <form action="" method="post">
             <div class="text-center fs-1 fw-bold">Bienvenid@</div>
             {% csrf_token %}
             {{form | crispy}}
+            <div class="d-flex justify-content-around mt-1">
+            </div>
             <input type="submit" value="Iniciar Sesión" class="btn btn-verde my-1 w-100 mt-3 fw-semibold shadow-sm">
         </form>
         <div class="d-flex gap-1 justify-content-center mt-1">

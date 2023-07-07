@@ -16,13 +16,11 @@
     <div class="col-sm-3 col-izq ">
       <div class="row perfil">
         <div class="col-sm-12 bg-white p-5 rounded-4 text-dark shadow">
-          <h3>Mi Cuenta</h3>
-          <h5>Hola, {{user.username}}</h5>
+          <h3>Seguimiento</h3>
           <div class="list-group my-3">
-            <a href="{% url 'cuenta' %}" class="list-group-item list-group-item-action btn btn-verde" aria-current="true">
-              Mis Compras
+            <a href="{% url 'adminSeguimiento' %}" class="list-group-item list-group-item-action btn btn-verde" aria-current="true">
+              Atrás
             </a>
-            <a href="{% url 'miSuscripcion' %}" class="list-group-item list-group-item-action">Mi Suscripción</a>
           </div>
         </div>
       </div>
@@ -34,7 +32,7 @@
 
     <!-- Lateral der -->
     <div class="col-sm-9">
-      <h5 class="">Compra {{compra.codigo}}</h5>
+      <h5 class="">Pedido N°{{compra.id}}</h5>
       <div class="card mb-3 my-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -52,8 +50,6 @@
       </div>
       <h5 class="">Direccion:</h5>
       <p class="fs-6">{{ compra.direccion }}</p>
-      <h5 class="">Contacto:</h5>
-      <p class="fs-6">{{ compra.contacto }}</p>
       <h5 class="">Seguimiento:</h5>
       <div class="row">
 
@@ -64,10 +60,11 @@
             </div>
             <div class="card-body">
               <p>Tu compra esta siendo validada.</p>
+              <a href="{% url 'estadoValidacion' compra.id %}" class="btn btn-verde">Actualizar</a>
             </div>
           </div>
         </div>
-
+        
         {% if compra.estado.descripcion == 'Preparación' or compra.estado.descripcion == 'Reparto' or compra.estado.descripcion == 'Entregado' %} 
         <div class="col-3">
           <div class="card mb-4 rounded-3 shadow-sm border-success">
@@ -76,6 +73,7 @@
             </div>
             <div class="card-body">
               <p>Tu compra esta siendo preparada.</p>
+              <a href="{% url 'estadoPreparacion' compra.id %}" class="btn btn-verde">Actualizar</a>
             </div>
           </div>
         </div>
@@ -87,6 +85,7 @@
             </div>
             <div class="card-body">
               <p>Tu compra esta siendo preparada.</p>
+              <a href="{% url 'estadoPreparacion' compra.id %}" class="btn btn-verde">Actualizar</a>
               <p></p>
             </div>
           </div>
@@ -101,6 +100,7 @@
             </div>
             <div class="card-body">
               <p>Tu compra esta siendo repartida.</p>
+              <a href="{% url 'estadoReparto' compra.id %}" class="btn btn-verde">Actualizar</a>
             </div>
           </div>
         </div>
@@ -112,6 +112,7 @@
             </div>
             <div class="card-body">
               <p>Tu compra esta siendo repartida.</p>
+              <a href="{% url 'estadoReparto' compra.id %}" class="btn btn-verde">Actualizar</a>
               <p></p>
             </div>
           </div>
@@ -126,6 +127,7 @@
             </div>
             <div class="card-body">
               <p>Tu compra fue entregada.</p>
+              <a href="{% url 'estadoEntregado' compra.id %}" class="btn btn-verde">Actualizar</a>
             </div>
           </div>
         </div>
@@ -137,17 +139,12 @@
             </div>
             <div class="card-body">
               <p>Tu compra fue entregada.</p>
+              <a href="{% url 'estadoEntregado' compra.id %}" class="btn btn-verde">Actualizar</a>
               <p></p>
             </div>
           </div>
         </div>
         {% endif %}
-        <br>
-        <br>
-        <h5 class="">Detalle {{ boleta.codigo }}:</h5>
-        <p class="fs-6">Subtotal: {{ boleta.subtotal }}</p>
-        <p class="fs-6">Descuento: {{ boleta.descuento }}</p>
-        <p class="fs-6">Total: {{ boleta.total }}</p>
       </div>
 
       <!-- Fin Lateral der -->
