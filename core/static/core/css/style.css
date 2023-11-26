@@ -5,6 +5,13 @@
     height: 300px;
 }
 
+.fondonew{
+    background: url(../img/flowingelegancy.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+}
+
 .btn-verde{
     background-color: green;
     color: white;

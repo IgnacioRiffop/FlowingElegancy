@@ -65,12 +65,12 @@ class CompraAdmin(admin.ModelAdmin):
     list_filter = ['cliente']
     list_editable = ['direccion','contacto','fecha','estado']
 
-admin.site.register(TipoProducto,TProductoAdmin)
-admin.site.register(Producto,ProductoAdmin)
-admin.site.register(Cliente,ClienteAdmin)
-admin.site.register(Carrito, CarritoAdmin)
-admin.site.register(Compras,CompraAdmin)
-admin.site.register(TipoSuscripcion,TSuscripcionAdmin)
-admin.site.register(Suscripcion,SuscripcionAdmin)
-admin.site.register(TipoEstado,TEstadoAdmin)
-admin.site.register(Boleta,BoletaAdmin)
+#admin.site.register(TipoProducto,TProductoAdmin)
+#admin.site.register(Producto,ProductoAdmin)
+#admin.site.register(Cliente,ClienteAdmin)
+#admin.site.register(Carrito, CarritoAdmin)
+#admin.site.register(Compras,CompraAdmin)
+#admin.site.register(TipoSuscripcion,TSuscripcionAdmin)
+#admin.site.register(Suscripcion,SuscripcionAdmin)
+#admin.site.register(TipoEstado,TEstadoAdmin)
+#admin.site.register(Boleta,BoletaAdmin)
