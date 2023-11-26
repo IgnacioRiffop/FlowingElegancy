@@ -91,8 +91,8 @@ def index(request):
 
 
 # CRUD PRODUCTO
+"""
 @login_required
-
 def addProducto(request):
     data = {
         'form' : ProductoForm()
@@ -169,10 +169,10 @@ def agregarCompra(request):
             Boleta.objects.create(codigo=codigo,subtotal=subtotal,descuento=descuento,total=total)
     return redirect(to='/cuenta/')
     #return render(request, 'core/cuenta.html')
+"""
 
 @login_required
-@grupo_requerido('cliente')
-def cuenta(request):
+def mantenedorad(request):
     cliente = User.objects.get(username=request.user.username)
     comprasCliente = Compras.objects.filter(cliente=cliente).order_by('-id')
     existe = comprasCliente.exists()
@@ -190,10 +190,10 @@ def cuenta(request):
         'existe': existe,
         'paginator': paginator
     }
-    return render(request, 'core/cuenta.html', data)
+    return render(request, 'core/mantenedorad.html', data)
 
+"""
 @login_required
-@grupo_requerido('cliente')
 def carrito(request):
     cliente = User.objects.get(username=request.user.username)
     CarritoCliente = Carrito.objects.filter(cliente=cliente, vigente=True)
@@ -259,11 +259,10 @@ def tienda(request):
     }
     return render(request, 'core/tienda.html', data)
 
-"""
+
 def tiendaSesion(request):
     return render(request, ('core/tiendaSesion.html'))
-"""
-"""
+
 def login(request):
     return render(request, ('core/login.html'))
 """
@@ -286,6 +285,7 @@ def registro(request):
         data["form"]=formulario
     return render(request, 'core/registro.html', data)
 
+"""
 @login_required
 @grupo_requerido('cliente')
 def compra(request,id):
@@ -386,10 +386,10 @@ def producto(request, id):
             
     return render(request, ('core/producto.html'), data)
 
-"""
+
 def productoSesion(request):
     return render(request, ('core/productoSesion.html'))
-"""
+
 @login_required
 @grupo_requerido('cliente')
 def suscripcion(request):
@@ -502,7 +502,7 @@ def updateSuscripcion(request, id):
     return redirect(to='suscripcion')
 # FIN CRUD Suscripcion
 
-"""
+
 def voucher(request):
     cliente = Cliente.objects.filter(usuario=request.user.username)[:1]
     CarritoCliente = Carrito.objects.filter(cliente=cliente)
@@ -543,8 +543,7 @@ def voucher(request):
 
     CarritoCliente.delete()
     return render(request, 'core/voucher.html', data)
-"""
-"""
+
 def recuperarPass(request):
     return render(request, ('core/recuperarPass.html'))
 """
@@ -563,6 +562,7 @@ def usuario_pertenece_a_grupo(username, group_name):
 def base(request):
     return render(request, 'core/base.html')
 
+"""
 @login_required
 @grupo_requerido('vendedor')
 def administracion(request):
@@ -615,7 +615,7 @@ def deleteCarrito(request, id):
     itemCarrito.delete()
     return redirect(to='carrito')
 # FIN CRUD CARRITO
-
+"""
 
 # CRUD Adulto Mayor
 def addDatosPersonales(request):
@@ -645,3 +645,43 @@ def deleteAdultoMayor(request):
     usuario.delete()
     messages.success(request, "Tu cuenta ha sido eliminada.")
     return redirect(to='logout') # Redirigir a la vista de inicio después de eliminar la cuenta
+
+
+def registrar(request):
+    data = {
+        'form': RegistroForm()
+    }
+
+    if request.method == 'POST':
+        formulario = RegistroForm(data=request.POST) # OBTIENE LA DATA DEL FORMULARIO
+        if formulario.is_valid():
+            #formulario.save()
+            user = User.objects.create_user(username = formulario.cleaned_data["username"], password = formulario.cleaned_data["password1"])
+            #login(request, user)
+            #messages.success(request, "Te has registrado correctamente!")
+            grupo = Group.objects.get(name='cliente')
+            user.groups.add(grupo)
+            #redirigir al home
+            return redirect('addAdultoMayor', username=user.username)
+        data["form"]=formulario
+    return render(request, 'core/registrar.html', data)
+
+def addAdultoMayor(request,username):
+    usuario_actual = User.objects.get(username=username)
+
+    data = {
+        'form': dpForm(initial={'id_credencial': usuario_actual})
+    }
+
+    if request.method == 'POST':
+        formulario = dpForm(request.POST, files=request.FILES)
+
+        # Asignar el usuario actual al campo id_credencial antes de guardar
+        formulario.instance.id_credencial = usuario_actual
+
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Datos guardados correctamente!")
+            return render(request, 'core/mantenedorad.html', data)
+
+    return render(request, 'core/addDatosPersonales.html', data)

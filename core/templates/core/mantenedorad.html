@@ -13,12 +13,13 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
   <div class="text-center text-black">
     <br>
-    <h3>Mi Cuenta</h3>
-    <h5>{{user.username}}</h5>
-    <h6>En esta pagina podrás administrar tu cuenta.</h6>
+    <h3>Mantenedor Adultos Mayores</h3>
+    <h6>En esta pagina podrás administrar las cuentas</h6>
   </div>
   <br>
-  <a href="" class="btn btn-verde">Editar datos personales</a>
+  <a href="{% url 'registrar' %}" class="btn btn-verde">Crear nueva cuenta</a>
+  <br>
+  <a href="" class="btn btn-verde">Buscar</a>
   <br>
   <a href="{% url 'deleteAdultoMayor' %}" class="btn btn-danger">Eliminar cuenta</a>
 </div>

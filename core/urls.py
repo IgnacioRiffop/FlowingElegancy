@@ -32,7 +32,7 @@ urlpatterns = [
     #path('productoSesion', productoSesion, name="productoSesion"),
     #path('carrito/', carrito, name="carrito"),
     #path('compra/<id>', compra, name="compra"),
-    path('cuenta/', cuenta, name="cuenta"),
+    path('mantenedorad/', mantenedorad, name="mantenedorad"),
     #path('tienda/', tienda, name="tienda"),
     path('login/', login, name="login"),
     path('registro/', registro, name="registro"),
@@ -50,4 +50,6 @@ urlpatterns = [
     #path('adminProductos/', adminProductos, name="adminProductos"),
     path('addDatosPersonales/', addDatosPersonales, name="addDatosPersonales"),
     path('deleteAdultoMayor/', deleteAdultoMayor, name="deleteAdultoMayor"),
+    path('registrar/', registrar, name="registrar"),
+    path('addAdultoMayor/<username>/', addAdultoMayor, name="addAdultoMayor"),
 ]
