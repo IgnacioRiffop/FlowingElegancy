@@ -52,4 +52,5 @@ urlpatterns = [
     path('deleteAdultoMayor/', deleteAdultoMayor, name="deleteAdultoMayor"),
     path('registrar/', registrar, name="registrar"),
     path('addAdultoMayor/<username>/', addAdultoMayor, name="addAdultoMayor"),
+    path('buscarad/', buscarad, name='buscarad'),
 ]

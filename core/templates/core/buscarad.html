@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static%}
+
+{% block css %}
+  
+{% endblock %}
+
+<!-- INICIO CONTENIDO-->
+{% block contenido %}
+
+    {% if objeto %}
+        <h1>Objeto encontrado</h1>
+        <p>ID: {{ objeto.id }}</p>
+        <!-- Mostrar otros campos del objeto según tu modelo -->
+    {% elif mensaje %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+
+    <form method="get" action="{% url 'buscarad' %}">
+        <label for="id_busqueda">Buscar por ID:</label>
+        <input type="text" name="id_busqueda">
+        <button type="submit">Buscar</button>
+    </form>
+
+  <!-- Fin Contenido -->
+
+  {% endblock %}
+  <!-- FIN CONTENIDO -->
+  {% block js %}
+  
+  {% endblock %}

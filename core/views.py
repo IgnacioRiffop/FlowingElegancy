@@ -685,3 +685,15 @@ def addAdultoMayor(request,username):
             return render(request, 'core/mantenedorad.html', data)
 
     return render(request, 'core/addDatosPersonales.html', data)
+
+def buscarad(request):
+    if 'id_busqueda' in request.GET:
+        id_busqueda = request.GET['id_busqueda']
+        try:
+            objeto = AdultoMayor.objects.get(rut=id_busqueda)
+            return render(request, 'core/buscarad.html', {'objeto': objeto})
+        except AdultoMayor.DoesNotExist:
+            mensaje = 'No se encontró ningún objeto con el ID proporcionado.'
+            return render(request, 'core/buscarad.html', {'mensaje': mensaje})
+
+    return render(request, 'core/buscarad.html')  # Renderizar la página de búsqueda
