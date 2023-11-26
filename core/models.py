@@ -85,3 +85,18 @@ class Suscripcion(models.Model):
 
     def __str__(self):
         return self.cliente.username
+    
+
+class AdultoMayor(models.Model):
+    rut = models.CharField(max_length=50)
+    primer_nombre = models.CharField(max_length=50)
+    segundo_nombre = models.CharField(max_length=50)
+    primer_apellido = models.CharField(max_length=50)
+    segundo_apellido = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=50)
+    fecha_nacimiento = models.DateField()
+    telefono = models.IntegerField()
+    correo = models.CharField(max_length=50)
+    comuna = models.CharField(max_length=50)
+    genero = models.CharField(max_length=50)
+    id_credencial = models.ForeignKey(User, on_delete=models.CASCADE)

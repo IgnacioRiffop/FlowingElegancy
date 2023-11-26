@@ -92,7 +92,7 @@ def index(request):
 
 # CRUD PRODUCTO
 @login_required
-@grupo_requerido('vendedor')
+
 def addProducto(request):
     data = {
         'form' : ProductoForm()
@@ -108,7 +108,6 @@ def addProducto(request):
     return render(request, 'core/addProducto.html', data)
 
 @login_required
-@grupo_requerido('vendedor')
 def updateProducto(request, id):
     producto = Producto.objects.get(id=id) #OBTIENE UN PRODUCTO POR EL ID
     data = {
@@ -283,7 +282,7 @@ def registro(request):
             grupo = Group.objects.get(name='cliente')
             user.groups.add(grupo)
             #redirigir al home
-            return redirect(to="index")
+            return redirect(to="addDatosPersonales")
         data["form"]=formulario
     return render(request, 'core/registro.html', data)
 
@@ -617,3 +616,32 @@ def deleteCarrito(request, id):
     return redirect(to='carrito')
 # FIN CRUD CARRITO
 
+
+# CRUD Adulto Mayor
+def addDatosPersonales(request):
+    usuario_actual = User.objects.get(username=request.user.username)
+
+    data = {
+        'form': dpForm(initial={'id_credencial': usuario_actual})
+    }
+
+    if request.method == 'POST':
+        formulario = dpForm(request.POST, files=request.FILES)
+
+        # Asignar el usuario actual al campo id_credencial antes de guardar
+        formulario.instance.id_credencial = usuario_actual
+
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Datos guardados correctamente!")
+            return render(request, 'core/index.html', data)
+
+    return render(request, 'core/addDatosPersonales.html', data)
+
+
+@login_required
+def deleteAdultoMayor(request):
+    usuario = request.user
+    usuario.delete()
+    messages.success(request, "Tu cuenta ha sido eliminada.")
+    return redirect(to='logout') # Redirigir a la vista de inicio después de eliminar la cuenta

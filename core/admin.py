@@ -74,3 +74,10 @@ class CompraAdmin(admin.ModelAdmin):
 #admin.site.register(Suscripcion,SuscripcionAdmin)
 #admin.site.register(TipoEstado,TEstadoAdmin)
 #admin.site.register(Boleta,BoletaAdmin)
+
+class AdultoAdmin(admin.ModelAdmin):
+    list_display = ['rut','primer_nombre','segundo_nombre','primer_apellido','segundo_apellido', 'direccion', 'fecha_nacimiento', 'telefono', 'correo', 'comuna','genero','id_credencial']
+    list_per_page = 10
+    list_editable = ['primer_nombre','segundo_nombre','primer_apellido','segundo_apellido', 'direccion', 'fecha_nacimiento', 'telefono', 'correo', 'comuna','genero','id_credencial']
+
+admin.site.register(AdultoMayor,AdultoAdmin)

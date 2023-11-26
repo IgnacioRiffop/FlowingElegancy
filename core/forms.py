@@ -23,7 +23,7 @@ class ProductoForm (ModelForm):
 class RegistroForm (UserCreationForm):
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ['username','password1','password2']
 
 
 class CantidadForm (ModelForm):
@@ -53,3 +53,18 @@ class envioForm (ModelForm):
         fields = ['direccion','contacto']
 
 
+class dpForm (ModelForm):
+    rut = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Rut"}))
+    primer_nombre = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Primer nombre"}))
+    segundo_nombre = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Segundo nombre"}))
+    primer_apellido = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Primer apellido"}))
+    segundo_apellido = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Segundo apellido"}))
+    direccion = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Dirección"}))
+    fecha_nacimiento = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2023)))
+    telefono = forms.IntegerField(min_value=1 ,widget=forms.NumberInput(attrs={"placeholder":"Telefono"}))
+    correo = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Correo"}))
+    comuna = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Comuna"}))
+    genero = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Genero"}))
+    class Meta:
+        model = AdultoMayor
+        fields = ['rut','primer_nombre','segundo_nombre','primer_apellido','segundo_apellido','direccion','fecha_nacimiento','telefono','correo','comuna','genero']
