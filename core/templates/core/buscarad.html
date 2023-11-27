@@ -9,18 +9,51 @@
 {% block contenido %}
 
     {% if objeto %}
-        <h1>Objeto encontrado</h1>
-        <p>ID: {{ objeto.id }}</p>
-        <!-- Mostrar otros campos del objeto según tu modelo -->
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+            <br><br>
+            <form method="get" action="{% url 'buscarad' %}">
+                <label for="id_busqueda">Buscar por Rut:</label>
+                <br>
+                <input type="text" name="id_busqueda">
+                <button type="submit" class="btn btn-verde">Buscar</button>
+                <br>
+                <label for="id_busqueda">Sin puntos con guión.</label> 
+            </form>
+            <div class="text-center text-black">
+            <br>
+            <br>
+            <h3>{{ objeto.primer_nombre }} {{ objeto.segundo_nombre }} {{ objeto.primer_apellido }} {{ objeto.segundo_apellido }}</h3>
+            <h3>Rut: {{ objeto.rut }}</h3>
+            <h3>Dirección: {{ objeto.direccion }}</h3>
+            <h3>Fecha de nacimiento: {{ objeto.fecha_nacimiento }}</h3>
+            <h3>Telefono: {{ objeto.telefono }}</h3>
+            <h3>Correo: {{ objeto.correo }}</h3>
+            <h3>Comuna: {{ objeto.comuna }}</h3>
+            <h3>Genero: {{ objeto.genero }}</h3>
+            </div>
+            <br>
+            <a href="{% url 'updateAdultoMayor' objeto.id %}" class="btn btn-verde">Editar datos</a>
+            <br>
+            <a href="{% url 'deleteAdultoMayor' %}" class="btn btn-danger">Eliminar</a>
+        </div>
     {% elif mensaje %}
-        <p>{{ mensaje }}</p>
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+        <br><br>
+        <form method="get" action="{% url 'buscarad' %}">
+            <label for="id_busqueda">Buscar por Rut</label>
+            <br>
+            <input type="text" name="id_busqueda">
+            <button type="submit" class="btn btn-verde">Buscar</button>
+            <br>
+            <label for="id_busqueda">Sin puntos con guión.</label> 
+        </form>
+        <div class="text-center text-black">
+        <br><br>
+        <h3>{{ mensaje }}</h3>
+        <br>
+        </div>
+    </div>
     {% endif %}
-
-    <form method="get" action="{% url 'buscarad' %}">
-        <label for="id_busqueda">Buscar por ID:</label>
-        <input type="text" name="id_busqueda">
-        <button type="submit">Buscar</button>
-    </form>
 
   <!-- Fin Contenido -->
 

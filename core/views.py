@@ -697,3 +697,24 @@ def buscarad(request):
             return render(request, 'core/buscarad.html', {'mensaje': mensaje})
 
     return render(request, 'core/buscarad.html')  # Renderizar la página de búsqueda
+
+def updateAdultoMayor(request,id):
+    adulto = AdultoMayor.objects.get(id=id)
+
+    data = {
+        'form': dpForm(instance=adulto)
+    }
+
+    if request.method == 'POST':
+        formulario = dpForm(request.POST,instance=adulto, files=request.FILES)
+
+        # Asignar el usuario actual al campo id_credencial antes de guardar
+        formulario.instance.id_credencial = adulto.id_credencial
+
+        if formulario.is_valid():
+            formulario.save()
+            # Realiza cualquier modificación adicional en el objeto adulto si es necesario
+            return render(request, 'core/buscarad.html', {'objeto': adulto})
+
+    return render(request, 'core/updateAdultoMayor.html', data)
+
