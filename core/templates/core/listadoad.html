@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static%}
+
+{% block css %}
+  
+{% endblock %}
+
+<!-- INICIO CONTENIDO-->
+{% block contenido %}
+
+<div class="p-3 pb-md-4 mx-auto text-center">
+  <h1 class="display-4 fw-normal">Listado Adultos Mayores</h1>
+</div>
+
+<!-- Tienda -->
+<div class="album py-1 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for adulto in listado %}
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <p class="card-text">{{ adulto.primer_nombre }} {{ adulto.segundo_nombre }} {{ adulto.primer_apellido }} {{ adulto.segundo_apellido }}</p>
+                <p class="card-text">{{ adulto.rut }}</p>
+                <p class="card-text">{{ adulto.direccion }}</p>
+                <p class="card-text">{{ adulto.fecha_nacimiento }}</p>
+                <p class="card-text">{{ adulto.telefono }}</p>
+                <p class="card-text">{{ adulto.correo }}</p>
+                <p class="card-text">{{ adulto.comuna }}</p>
+                <p class="card-text">{{ adulto.genero }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'updateAdultoMayorl' adulto.id %}" class="btn btn-verde">Modificar</a>
+                    <a href="{% url 'deleteAdultoMayorl' adulto.id_credencial.username %}" class="btn btn-danger">Eliminar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      {% endfor %}
+    </div>
+    <br>
+    {% include 'core/paginator.html' %}
+  </div>
+</div>
+<!-- Fin Tienda-->
+
+
+{% endblock %}
+<!-- FIN CONTENIDO -->
+{% block js %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'core/js/mensajeProducto.js' %}"></script>
+{% endblock %}

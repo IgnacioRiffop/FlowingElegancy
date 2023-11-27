@@ -646,6 +646,12 @@ def deleteAdultoMayor(request,username):
     messages.success(request, "Tu cuenta ha sido eliminada.")
     return redirect(to='mantenedorad') # Redirigir a la vista de inicio después de eliminar la cuenta
 
+def deleteAdultoMayorl(request,username):
+    usuario = User.objects.get(username=username)
+    usuario.delete()
+    messages.success(request, "Tu cuenta ha sido eliminada.")
+    return redirect(to='listadoad') # Redirigir a la vista de inicio después de eliminar la cuenta
+
 
 def registrar(request):
     data = {
@@ -720,3 +726,39 @@ def updateAdultoMayor(request,id):
 
     return render(request, 'core/updateAdultoMayor.html', data)
 
+def updateAdultoMayorl(request,id):
+    adulto = AdultoMayor.objects.get(id=id)
+    username = adulto.id_credencial.username
+
+    data = {
+        'form': dpForm(instance=adulto)
+    }
+
+    if request.method == 'POST':
+        formulario = dpForm(request.POST,instance=adulto, files=request.FILES)
+
+        # Asignar el usuario actual al campo id_credencial antes de guardar
+        formulario.instance.id_credencial = adulto.id_credencial
+
+        if formulario.is_valid():
+            formulario.save()
+            # Realiza cualquier modificación adicional en el objeto adulto si es necesario
+            return redirect(to='listadoad')
+
+    return render(request, 'core/updateAdultoMayor.html', data)
+
+def listadoad(request):
+    AdultosAll = AdultoMayor.objects.all() # SELECT * FROM producto
+    page = request.GET.get('page', 1) # OBTENEMOS LA VARIABLE DE LA URL, SI NO EXISTE NADA DEVUELVE 1
+    
+    try:
+        paginator = Paginator(AdultosAll, 9)
+        AdultosAll = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'listado': AdultosAll,
+        'paginator': paginator
+    }
+    return render(request, 'core/listadoad.html', data)

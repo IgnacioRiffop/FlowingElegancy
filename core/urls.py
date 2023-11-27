@@ -50,8 +50,11 @@ urlpatterns = [
     #path('adminProductos/', adminProductos, name="adminProductos"),
     path('addDatosPersonales/', addDatosPersonales, name="addDatosPersonales"),
     path('deleteAdultoMayor/<username>', deleteAdultoMayor, name="deleteAdultoMayor"),
+    path('deleteAdultoMayorl/<username>', deleteAdultoMayorl, name="deleteAdultoMayorl"),
     path('registrar/', registrar, name="registrar"),
     path('addAdultoMayor/<username>/', addAdultoMayor, name="addAdultoMayor"),
     path('updateAdultoMayor/<id>/', updateAdultoMayor, name="updateAdultoMayor"),
+    path('updateAdultoMayorl/<id>/', updateAdultoMayorl, name="updateAdultoMayorl"),
     path('buscarad/', buscarad, name='buscarad'),
+    path('listadoad/', listadoad, name='listadoad'),
 ]
