@@ -51,11 +51,8 @@ class SuscripcionViewset(viewsets.ModelViewSet):
 def index(request):
     #OBTIENE DATOS DEL API
     respuesta = requests.get('http://127.0.0.1:8000/api/productos/') # SELECT * FROM producto
-    respuesta2 = requests.get('https://mindicador.cl/api')
-    respuesta3 = requests.get('https://rickandmortyapi.com/api/character')
     #TRANSFORMAR EL JSON
     productosAll = respuesta.json()
-    monedas = respuesta2.json()
     #envolvente = respuesta3.json()
     #personajes = envolvente['results']
 
@@ -82,7 +79,6 @@ def index(request):
 
     data = {
         'listado': productosAll,
-        'monedas': monedas,
         #'personajes': personajes,
         'isadmin': flag,
         'paginator': paginator
@@ -762,3 +758,6 @@ def listadoad(request):
         'paginator': paginator
     }
     return render(request, 'core/listadoad.html', data)
+
+def inscripcionTalleres(request):
+    return render(request, 'core/inscripcionTalleres.html')

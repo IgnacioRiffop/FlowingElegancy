@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static%}
+
+{% block css %}
+  
+{% endblock %}
+
+<!-- INICIO CONTENIDO-->
+{% block contenido %}
+
+<!-- Bienvenido -->
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+  <div class="text-center text-black">
+    {% if user.is_authenticated %}
+
+    <h1 class="display-1">
+      Inscribe tu taller!
+    </h1>
+    {% else %}
+    <h1 class="display-1">
+      Hola!
+    </h1>
+    {% endif %}
+    <br>
+    <br>
+  </div>
+</div>
+<!-- Fin Bienvenido -->
+
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+  <div class="text-center text-black">
+      <div class="row">
+          <div class="card ms-3 me-3" style="width: 25rem;">
+              <img src="{% static 'core/img/cueca.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Cueca</h5>
+                  <p class="card-text">Aquí podrás inscribirte si deseas participar.</p>
+                  <a href="{% url 'inscripcionTalleres' %}" class="btn btn-primary">Inscribir taller</a>
+              </div>
+          </div>
+          <div class="card ms-3 me-3" style="width: 25rem;">
+              <img src="{% static 'core/img/caminata.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Caminata</h5>
+                  <p class="card-text">Aquí podrás inscribirte si deseas participar.</p>
+                  <a href="{% url 'inscripcionTalleres' %}" class="btn btn-primary">Inscribir taller</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
+<!-- FIN CONTENIDO -->
+{% block js %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'core/js/mensajeProducto.js' %}"></script>
+{% endblock %}

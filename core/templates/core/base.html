@@ -22,7 +22,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'index' %}"><i class="fa-solid">VidaActiva</i></a>
+      <a class="navbar-brand" href="{% url 'index' %}"><i class="">VidaActiva</i></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,7 +30,7 @@
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'mantenedorad' %}">Manenedor Adulto Mayor</a>
+            <a class="nav-link" href="{% url 'mantenedorad' %}">Mantenedor Adulto Mayor</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesíon</a>

@@ -14,7 +14,7 @@
     {% if user.is_authenticated %}
 
     <h1 class="display-1">
-      Hola! {{ user.username }}
+      Bienvenido!
     </h1>
     {% else %}
     <h1 class="display-1">
@@ -26,6 +26,22 @@
   </div>
 </div>
 <!-- Fin Bienvenido -->
+
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+  <div class="text-center text-black">
+  <div class="row">
+      <div class="card" style="width: 25rem;">
+        <img src="{% static 'core/img/foto2.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Inscripción de talleres</h5>
+          <p class="card-text">Aqui podrás inscribirte si deseas participar.</p>
+          <a href="{% url 'inscripcionTalleres' %}" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+
 
 
 {% endblock %}

@@ -81,3 +81,17 @@ class AdultoAdmin(admin.ModelAdmin):
     list_editable = ['primer_nombre','segundo_nombre','primer_apellido','segundo_apellido', 'direccion', 'fecha_nacimiento', 'telefono', 'correo', 'comuna','genero','id_credencial']
 
 admin.site.register(AdultoMayor,AdultoAdmin)
+
+class TallerAdmin(admin.ModelAdmin):
+    list_display = ['nombre','capacidad','descripcion']
+    list_per_page = 10
+    list_editable = ['capacidad','descripcion']
+
+admin.site.register(Taller,TallerAdmin)
+
+class InscripcionTallerAdmin(admin.ModelAdmin):
+    list_display = ['taller','fecha_inicio','fecha_termino','instructor','sala','adulto_mayor','instructor','nota']
+    list_per_page = 10
+    list_editable = ['fecha_inicio','fecha_termino','instructor','sala','adulto_mayor','instructor','nota']
+
+admin.site.register(InscripcionTaller,InscripcionTallerAdmin)
