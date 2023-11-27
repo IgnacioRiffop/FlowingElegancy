@@ -640,11 +640,11 @@ def addDatosPersonales(request):
 
 
 @login_required
-def deleteAdultoMayor(request):
-    usuario = request.user
+def deleteAdultoMayor(request,username):
+    usuario = User.objects.get(username=username)
     usuario.delete()
     messages.success(request, "Tu cuenta ha sido eliminada.")
-    return redirect(to='logout') # Redirigir a la vista de inicio después de eliminar la cuenta
+    return redirect(to='mantenedorad') # Redirigir a la vista de inicio después de eliminar la cuenta
 
 
 def registrar(request):
@@ -691,7 +691,8 @@ def buscarad(request):
         id_busqueda = request.GET['id_busqueda']
         try:
             objeto = AdultoMayor.objects.get(rut=id_busqueda)
-            return render(request, 'core/buscarad.html', {'objeto': objeto})
+            username = objeto.id_credencial.username
+            return render(request, 'core/buscarad.html', {'objeto': objeto, 'username':username})
         except AdultoMayor.DoesNotExist:
             mensaje = 'No se encontró ningún objeto con el ID proporcionado.'
             return render(request, 'core/buscarad.html', {'mensaje': mensaje})
@@ -700,6 +701,7 @@ def buscarad(request):
 
 def updateAdultoMayor(request,id):
     adulto = AdultoMayor.objects.get(id=id)
+    username = adulto.id_credencial.username
 
     data = {
         'form': dpForm(instance=adulto)
@@ -714,7 +716,7 @@ def updateAdultoMayor(request,id):
         if formulario.is_valid():
             formulario.save()
             # Realiza cualquier modificación adicional en el objeto adulto si es necesario
-            return render(request, 'core/buscarad.html', {'objeto': adulto})
+            return render(request, 'core/buscarad.html', {'objeto': adulto, 'username':username})
 
     return render(request, 'core/updateAdultoMayor.html', data)
 

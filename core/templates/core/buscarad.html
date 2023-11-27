@@ -34,7 +34,7 @@
             <br>
             <a href="{% url 'updateAdultoMayor' objeto.id %}" class="btn btn-verde">Editar datos</a>
             <br>
-            <a href="{% url 'deleteAdultoMayor' %}" class="btn btn-danger">Eliminar</a>
+            <a href="{% url 'deleteAdultoMayor' username %}" class="btn btn-danger">Eliminar</a>
         </div>
     {% elif mensaje %}
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
